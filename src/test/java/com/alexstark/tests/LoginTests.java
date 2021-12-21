@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
@@ -17,6 +20,8 @@ import static io.restassured.RestAssured.given;
 
 @Story("Login tests")
 public class LoginTests extends TestBase {
+
+    private static final Map<String,String> DATA = new HashMap<>();
 
     @Test
     @Tag("demowebshop")
@@ -39,15 +44,20 @@ public class LoginTests extends TestBase {
     @DisplayName("Successful authorization (API + UI)")
     void loginWithCookieTest() {
         step("Get cookie by api and set it to browser", () -> {
+
+            DATA.put("Email", App.config.userLogin());
+            DATA.put("Password", App.config.userPassword());
+
             String authorizationCookie =
                     given()
                             .filter(AllureRestAssuredFilter.withCustomTemplates())
+                            .log().all()
                             .contentType("application/x-www-form-urlencoded; charset=UTF-8")
-                            .formParam("Email", App.config.userLogin())
-                            .formParam("Password", App.config.userPassword())
+                            .formParams(DATA)
                             .when()
                             .post("http://demowebshop.tricentis.com/login")
                             .then()
+                            .log().status()
                             .statusCode(302)
                             .extract()
                             .cookie("NOPCOMMERCE.AUTH");
