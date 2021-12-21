@@ -1,6 +1,7 @@
-package com.alexstark.tests;
+package com.alexstark.testsAPI.demowebshop;
 
 import com.alexstark.helpers.AllureRestAssuredFilter;
+import com.alexstark.testsAPI.TestBase;
 import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;

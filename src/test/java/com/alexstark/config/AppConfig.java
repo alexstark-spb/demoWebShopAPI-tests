@@ -8,7 +8,6 @@ import org.aeonbits.owner.Config;
         "classpath:config/app.properties"
 })
 public interface AppConfig extends Config {
-
     String webUrl();
     String apiUrl();
     String userLogin();
