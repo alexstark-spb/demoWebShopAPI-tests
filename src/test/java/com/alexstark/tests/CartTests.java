@@ -7,7 +7,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,8 +47,6 @@ public class CartTests extends TestBase {
             DATA.put("product_attribute_72_6_19","54");
             DATA.put("product_attribute_72_3_20","57");
             DATA.put("addtocart_72.EnteredQuantity","1");
-
-            System.out.println(DATA.toString());
 
             responseBody =
                     given()
