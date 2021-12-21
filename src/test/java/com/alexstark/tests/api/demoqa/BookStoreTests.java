@@ -1,4 +1,4 @@
-package com.alexstark.testsAPI.demoqa;
+package com.alexstark.tests.api.demoqa;
 
 import com.alexstark.helpers.AllureRestAssuredFilter;
 import io.qameta.allure.Story;

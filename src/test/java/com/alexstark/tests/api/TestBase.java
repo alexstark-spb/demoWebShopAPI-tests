@@ -1,4 +1,4 @@
-package com.alexstark.testsAPI;
+package com.alexstark.tests.api;
 
 import com.alexstark.config.App;
 import com.alexstark.helpers.DriverSettings;
