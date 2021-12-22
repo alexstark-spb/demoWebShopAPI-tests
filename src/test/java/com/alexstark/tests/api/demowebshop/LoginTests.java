@@ -3,6 +3,7 @@ package com.alexstark.tests.api.demowebshop;
 import com.alexstark.config.App;
 import com.alexstark.helpers.AllureRestAssuredFilter;
 import com.alexstark.tests.api.TestBase;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -20,6 +21,7 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 
 @Story("Login tests")
+@Feature("DemoWebShop tests")
 public class LoginTests extends TestBase {
 
     private static final Map<String,String> DATA = new HashMap<>();

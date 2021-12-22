@@ -1,6 +1,7 @@
 package com.alexstark.tests.api.demoqa;
 
 import com.alexstark.helpers.AllureRestAssuredFilter;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.qameta.allure.restassured.AllureRestAssured;
 import org.junit.jupiter.api.Tag;
@@ -11,6 +12,7 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.*;
 
 @Story("Book Store tests")
+@Feature("DemoQA tests")
 public class BookStoreTests {
 
     @Test

@@ -2,6 +2,7 @@ package com.alexstark.tests.api.demowebshop;
 
 import com.alexstark.helpers.AllureRestAssuredFilter;
 import com.alexstark.tests.api.TestBase;
+import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
@@ -19,6 +20,7 @@ import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Story("Cart tests")
+@Feature("DemoWebShop tests")
 public class CartTests extends TestBase {
 
     private static Cookie cookieWeb;
