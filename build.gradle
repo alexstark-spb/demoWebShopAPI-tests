@@ -21,6 +21,9 @@ allure {
     }
 }
 
+sourceCompatibility = 1.11
+targetCompatibility = 1.11
+
 dependencies {
     testImplementation(
             "org.aspectj:aspectjweaver:1.9.6",
