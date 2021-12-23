@@ -1,7 +1,7 @@
 package com.alexstark.tests.api.demowebshop;
 
 import com.alexstark.config.App;
-import com.alexstark.helpers.AllureRestAssuredFilter;
+import com.alexstark.tests.api.Specs;
 import com.alexstark.tests.api.TestBase;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +17,6 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.given;
 
 @Story("Login tests")
 @Feature("DemoWebShop tests")
@@ -52,13 +50,10 @@ public class LoginTests extends TestBase {
             DATA.put("Password", App.config.userPassword());
 
             String authorizationCookie =
-                    given()
-                            .filter(AllureRestAssuredFilter.withCustomTemplates())
-                            .log().all()
-                            .contentType("application/x-www-form-urlencoded; charset=UTF-8")
+                    Specs.requestSpec
                             .formParams(DATA)
                             .when()
-                            .post("http://demowebshop.tricentis.com/login")
+                            .post("/login")
                             .then()
                             .log().status()
                             .statusCode(302)

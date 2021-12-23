@@ -1,6 +1,6 @@
 package com.alexstark.tests.api.demowebshop;
 
-import com.alexstark.helpers.AllureRestAssuredFilter;
+import com.alexstark.tests.api.Specs;
 import com.alexstark.tests.api.TestBase;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -12,11 +12,11 @@ import org.openqa.selenium.Cookie;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.alexstark.tests.api.Specs.responseSpec;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Story("Cart tests")
@@ -52,17 +52,14 @@ public class CartTests extends TestBase {
             DATA.put("addtocart_72.EnteredQuantity","1");
 
             responseBody =
-                    given()
-                            .filter(AllureRestAssuredFilter.withCustomTemplates())
-                            .log().all()
-                            .contentType("application/x-www-form-urlencoded; charset=UTF-8")
-                            .formParams(DATA)
+                    Specs.requestSpec
                             .cookie(cookieWeb.toString())
+                            .formParams(DATA)
                             .when()
                             .post("/addproducttocart/details/72/1")
                             .then()
-                            .log().all()
-                            .statusCode(200)
+                            .spec(responseSpec)
+                            .log().body()
                             .extract().response();
         });
 

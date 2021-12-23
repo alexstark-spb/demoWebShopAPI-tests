@@ -9,7 +9,6 @@ import org.aeonbits.owner.Config;
 })
 public interface AppConfig extends Config {
     String webUrl();
-    String apiUrl();
     String userLogin();
     String userPassword();
 }
