@@ -6,7 +6,6 @@ import com.alexstark.tests.api.Specs;
 public class Authorization {
 
     public String getAuthorizationCookie() {
-
         return Specs.requestSpec
                 .formParams(new DataLogin().getDataForLogin())
                 .when()

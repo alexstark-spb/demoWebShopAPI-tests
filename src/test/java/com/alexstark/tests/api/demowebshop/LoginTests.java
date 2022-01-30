@@ -39,7 +39,6 @@ public class LoginTests extends TestBase {
     @Tag("demowebshop")
     @DisplayName("Successful authorization (API + UI) using annotation @WithLogin")
     void loginWithCookieTest() {
-
         step("Open main page", () ->
                 open(""));
 

@@ -9,6 +9,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
 
 public class LoginExtension implements BeforeEachCallback {
+
     @Override
     public void beforeEach(ExtensionContext context) {
         String authorizationCookie =
