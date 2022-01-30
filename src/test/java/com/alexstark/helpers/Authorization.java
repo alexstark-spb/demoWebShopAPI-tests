@@ -1,4 +1,4 @@
-package com.alexstark.tests.api.demowebshop;
+package com.alexstark.helpers;
 
 import com.alexstark.data.DataLogin;
 import com.alexstark.tests.api.Specs;

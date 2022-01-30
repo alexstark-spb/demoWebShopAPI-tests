@@ -1,6 +1,5 @@
 package com.alexstark.helpers;
 
-import com.alexstark.tests.api.demowebshop.Authorization;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.Cookie;
