@@ -1,6 +1,7 @@
 package com.alexstark.tests.api.demoqa;
 
 import com.alexstark.helpers.AllureRestAssuredFilter;
+import com.google.gson.JsonObject;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import io.qameta.allure.restassured.AllureRestAssured;
@@ -14,6 +15,8 @@ import static org.hamcrest.Matchers.*;
 @Story("Book Store tests")
 @Feature("DemoQA tests")
 public class BookStoreTests {
+
+    public static final JsonObject DATA = new JsonObject();
 
     @Test
     @Tag("demoqa")
@@ -50,16 +53,15 @@ public class BookStoreTests {
     @Test
     @Tag("demoqa")
     void generateTokenTest() {
-        String data = "{" +
-                "  \"userName\": \"alex\"," +
-                "  \"password\": \"asdsad#frew_DFS2\"" +
-                "}";
+
+        DATA.addProperty("userName", "alex");
+        DATA.addProperty("password", "asdsad#frew_DFS2");
 
         given()
                 .filter(new AllureRestAssured())
                 .contentType("application/json; charset=utf-8")
                 .accept("application/json")
-                .body(data)
+                .body(DATA.toString())
                 .when()
                 .log().uri()
                 .log().body()
@@ -73,16 +75,15 @@ public class BookStoreTests {
     @Test
     @Tag("demoqa")
     void generateTokenWithSchemaTest() {
-        String data = "{" +
-                "  \"userName\": \"alex\"," +
-                "  \"password\": \"asdsad#frew_DFS2\"" +
-                "}";
+
+        DATA.addProperty("userName", "alex");
+        DATA.addProperty("password", "asdsad#frew_DFS2");
 
         given()
                 .filter(AllureRestAssuredFilter.withCustomTemplates())
                 .contentType("application/json")
                 .accept("application/json")
-                .body(data)
+                .body(DATA.toString())
                 .when()
                 .log().uri()
                 .log().body()

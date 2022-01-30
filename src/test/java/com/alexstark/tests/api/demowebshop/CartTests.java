@@ -1,5 +1,6 @@
 package com.alexstark.tests.api.demowebshop;
 
+import com.alexstark.data.DataCart;
 import com.alexstark.tests.api.Specs;
 import com.alexstark.tests.api.TestBase;
 import io.qameta.allure.Feature;
@@ -9,8 +10,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.alexstark.tests.api.Specs.responseSpec;
 import static com.codeborne.selenide.Selenide.$;
@@ -25,7 +24,6 @@ public class CartTests extends TestBase {
 
     private static Cookie cookieWeb;
     private static Response responseBody;
-    private static final Map<String,String> DATA = new HashMap<>();
 
     @Test
     @Tag("demowebshop")
@@ -34,9 +32,8 @@ public class CartTests extends TestBase {
         step("Open product page", () ->
                 open("/build-your-cheap-own-computer"));
 
-        step("Enter value = 3 in the 'Qty' field", () -> {
-            $("#addtocart_72_EnteredQuantity").setValue("3");
-        });
+        step("Enter value = 3 in the 'Qty' field", () ->
+                $("#addtocart_72_EnteredQuantity").setValue("3"));
 
         step("Click on the 'Add to cart' button", () ->
                 $("#add-to-cart-button-72").click());
@@ -46,15 +43,10 @@ public class CartTests extends TestBase {
 
         step("Set cookie by API and to add goods 'Qty = 1' to cart", () -> {
 
-            DATA.put("product_attribute_72_5_18","53");
-            DATA.put("product_attribute_72_6_19","54");
-            DATA.put("product_attribute_72_3_20","57");
-            DATA.put("addtocart_72.EnteredQuantity","1");
-
             responseBody =
                     Specs.requestSpec
                             .cookie(cookieWeb.toString())
-                            .formParams(DATA)
+                            .formParams(new DataCart().getDataForCart())
                             .when()
                             .post("/addproducttocart/details/72/1")
                             .then()
