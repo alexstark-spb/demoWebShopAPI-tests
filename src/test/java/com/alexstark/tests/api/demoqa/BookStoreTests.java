@@ -1,10 +1,10 @@
 package com.alexstark.tests.api.demoqa;
 
 import com.alexstark.helpers.AllureRestAssuredFilter;
+import com.alexstark.tests.api.Specs;
 import com.google.gson.JsonObject;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import io.qameta.allure.restassured.AllureRestAssured;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -53,19 +53,16 @@ public class BookStoreTests {
     @Test
     @Tag("demoqa")
     void generateTokenTest() {
-
         DATA.addProperty("userName", "alex");
         DATA.addProperty("password", "asdsad#frew_DFS2");
 
         given()
-                .filter(new AllureRestAssured())
-                .contentType("application/json; charset=utf-8")
-                .accept("application/json")
+                .spec(Specs.requestDemoqa)
                 .body(DATA.toString())
                 .when()
                 .log().uri()
                 .log().body()
-                .post("https://demoqa.com/Account/v1/GenerateToken")
+                .post("/Account/v1/GenerateToken")
                 .then()
                 .log().body()
                 .body("status", is("Success"))
@@ -75,7 +72,6 @@ public class BookStoreTests {
     @Test
     @Tag("demoqa")
     void generateTokenWithSchemaTest() {
-
         DATA.addProperty("userName", "alex");
         DATA.addProperty("password", "asdsad#frew_DFS2");
 
