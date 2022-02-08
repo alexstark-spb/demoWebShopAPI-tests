@@ -11,13 +11,27 @@ public class Specs {
 
     // spec for demowebshop
 
-    public static RequestSpecification requestSpec = with()
+    public static RequestSpecification requestDemowebshop = with()
             .filter(AllureRestAssuredFilter.withCustomTemplates())
             .log().all()
             .contentType("application/x-www-form-urlencoded; charset=UTF-8")
             .baseUri("http://demowebshop.tricentis.com");
 
-    public static ResponseSpecification responseSpec = new ResponseSpecBuilder()
+    public static ResponseSpecification responseDemowebshop = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .build();
+
+    public static RequestSpecification requestDemoqa = with()
+            .filter(AllureRestAssuredFilter.withCustomTemplates())
+            .log().uri()
+            .log().body()
+            .contentType("application/json")
+            .baseUri("https://demoqa.com");
+
+    public static RequestSpecification requestBank = with()
+            .filter(AllureRestAssuredFilter.withCustomTemplates())
+            .log().uri()
+            .log().body()
+            .contentType("application/json")
+            .baseUri("http://kn-ktapp.herokuapp.com");
 }
