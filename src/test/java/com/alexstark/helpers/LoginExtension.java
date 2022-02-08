@@ -13,7 +13,7 @@ public class LoginExtension implements BeforeEachCallback {
     @Override
     public void beforeEach(ExtensionContext context) {
         String authorizationCookie =
-                new Authorization().getAuthorizationCookie();
+                new AuthorizationAPI().getAuthorizationCookie();
 
         step("Open minimal content, because cookie can be set when site is opened", () ->
                 open("/Themes/DefaultClean/Content/images/logo.png"));
