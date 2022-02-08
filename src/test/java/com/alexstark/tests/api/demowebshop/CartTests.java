@@ -1,7 +1,7 @@
 package com.alexstark.tests.api.demowebshop;
 
-import com.alexstark.data.DataCart;
 import com.alexstark.tests.api.Specs;
+import com.alexstark.data.DataCart;
 import com.alexstark.tests.api.TestBase;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
@@ -11,14 +11,14 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
-import static com.alexstark.tests.api.Specs.responseSpec;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.qameta.allure.Allure.step;
+import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Story("Cart tests")
+@Story("Cart test")
 @Feature("DemoWebShop tests")
 public class CartTests extends TestBase {
 
@@ -44,13 +44,14 @@ public class CartTests extends TestBase {
         step("Set cookie by API and to add goods 'Qty = 1' to cart", () -> {
 
             responseBody =
-                    Specs.requestSpec
+                    given()
+                            .spec(Specs.requestDemowebshop)
                             .cookie(cookieWeb.toString())
                             .formParams(new DataCart().getDataForCart())
                             .when()
                             .post("/addproducttocart/details/72/1")
                             .then()
-                            .spec(responseSpec)
+                            .spec(Specs.responseDemowebshop)
                             .log().body()
                             .extract().response();
         });
