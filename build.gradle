@@ -8,6 +8,10 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    testCompile
+}
+
 def allureVersion = "2.16.1",
     selenideVersion = "6.0.3",
     junitVersion = "5.8.1"
@@ -17,6 +21,7 @@ allure {
     autoconfigure = true
     aspectjweaver = true
     configuration = "testImplementation"
+    clean = true
     useJUnit5 {
         version = allureVersion
     }
@@ -36,7 +41,7 @@ dependencies {
             "org.aeonbits.owner:owner:1.0.12",
             "com.github.javafaker:javafaker:1.0.2",
             "com.fasterxml.jackson.core:jackson-databind:2.11.2",
-            "org.assertj:assertj-core:3.21.0",
+            "org.assertj:assertj-core:3.23.0",
             "org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testRuntimeOnly(
             "org.slf4j:slf4j-simple:1.7.29",

@@ -9,8 +9,6 @@ import static io.restassured.RestAssured.with;
 
 public class Specs {
 
-    // spec for demowebshop
-
     public static RequestSpecification requestDemowebshop = with()
             .filter(AllureRestAssuredFilter.withCustomTemplates())
             .log().all()
